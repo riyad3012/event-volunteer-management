@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunteerHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="login-box">
+
+        <h1>VolunteerHub</h1>
+        <p class="subtitle">Make a difference. Be a part of something bigger.</p>
+
+        <!-- LOGIN FORM -->
+        <section id="loginSection">
+            <h2>Welcome Back!</h2>
+            <p>Login to your account</p>
+
+            <form id="loginForm">
+
+                <label>Email Address</label>
+                <input type="email" id="email"
+                       placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input type="password" id="password"
+                       placeholder="Enter your password" required>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <p id="message"></p>
+
+            <p class="register-link">
+                Don't have an account?
+                <a href="#" id="registerLink">Register here</a>
+            </p>
+        </section>
+
+
+        <!-- REGISTRATION FORM -->
+        <section id="registerSection" style="display:none;">
+
+            <h2>Create Account</h2>
+            <p>Join the VolunteerHub community</p>
+
+            <form id="registerForm">
+
+                <label>Full Name</label>
+                <input type="text" id="regName"
+                       placeholder="Enter your name" required>
+
+                <label>Email Address</label>
+                <input type="email" id="regEmail"
+                       placeholder="Enter your email" required>
+
+                <label>Phone Number</label>
+                <input type="tel" id="regPhone"
+                       placeholder="Enter your phone number" required>
+
+                <label>Password</label>
+                <input type="password" id="regPassword"
+                       placeholder="Create a password" required>
+
+                <label>Choose Your Roles</label>
+
+                <div class="role-options">
+
+                    <label>
+                        <input type="checkbox" name="roles"
+                               value="volunteer">
+                        Volunteer
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="roles"
+                               value="organizer">
+                        Organizer
+                    </label>
+
+                </div>
+
+                <label for="organizationName" id="organizationLabel"
+                       style="display:none;">
+                    Organization Name
+                </label>
+
+                <input type="text" id="organizationName"
+                       placeholder="Enter your organization name"
+                       style="display:none;">
+
+                <button type="submit">Create Account</button>
+
+            </form>
+
+            <p id="registerMessage"></p>
+
+            <p>
+                Already have an account?
+                <a href="#" id="loginLink">Login here</a>
+            </p>
+
+        </section>
+
+
+        <!-- ROLE SELECTION -->
+        <section id="roleSection" style="display:none;">
+
+            <h2>Welcome to VolunteerHub!</h2>
+            <p>Which dashboard would you like to access?</p>
+
+            <div id="roleButtons"></div>
+
+            <button type="button" id="logoutFromRoles">
+                Logout
+            </button>
+
+        </section>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

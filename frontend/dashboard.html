@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunteerHub | Volunteer Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <h2>VolunteerHub</h2>
+            <p>Volunteer Portal</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#overview" class="nav-link active">🏠 Dashboard</a>
+            <a href="#events" class="nav-link">📅 Browse Events</a>
+            <a href="#registrations" class="nav-link">📝 My Registrations</a>
+            <a href="#attendance" class="nav-link">✅ My Attendance</a>
+            <a href="#certificates" class="nav-link">🏆 Certificates</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Volunteer Dashboard</h1>
+                <p>Welcome back, <span id="volunteerName">Volunteer</span>!</p>
+            </div>
+
+            <div class="profile">
+                <div class="avatar" id="volunteerAvatar">V</div>
+            </div>
+        </header>
+
+
+        <!-- OVERVIEW -->
+        <section id="overview" class="dashboard-section">
+
+            <div class="section-heading">
+                <h2>Overview</h2>
+                <p>Here's your volunteering activity at a glance.</p>
+            </div>
+
+            <div class="stats-container">
+
+                <div class="stat-card">
+                    <p>Registered Events</p>
+                    <h2 id="totalRegistrations">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Pending Applications</p>
+                    <h2 id="pendingApplications">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Approved Events</p>
+                    <h2 id="approvedApplications">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Certificates Earned</p>
+                    <h2 id="totalCertificates">0</h2>
+                </div>
+
+            </div>
+
+            <div class="content-card">
+                <h3>Getting Started</h3>
+                <p>
+                    Discover volunteering opportunities, register for events,
+                    track your applications and earn certificates.
+                </p>
+                <a href="#events" class="primary-btn">Explore Events</a>
+            </div>
+
+        </section>
+
+
+        <!-- BROWSE EVENTS -->
+        <section id="events" class="dashboard-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Browse Events</h2>
+                    <p>Find volunteering opportunities and make a difference.</p>
+                </div>
+
+                <button id="refreshEventsBtn" class="secondary-btn">
+                    ↻ Refresh
+                </button>
+            </div>
+
+            <div class="search-container">
+                <input
+                    type="text"
+                    id="eventSearch"
+                    placeholder="Search events by name or location..."
+                >
+
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                </select>
+            </div>
+
+            <div id="eventsContainer" class="events-grid">
+
+                <p>Loading events...</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- MY REGISTRATIONS -->
+        <section id="registrations" class="dashboard-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>My Registrations</h2>
+                    <p>Track the status of your event applications.</p>
+                </div>
+
+                <button id="refreshRegistrationsBtn" class="secondary-btn">
+                    ↻ Refresh
+                </button>
+            </div>
+
+            <div class="content-card table-wrapper">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Registration Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="registrationsTable">
+                        <tr>
+                            <td colspan="3">Loading registrations...</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ATTENDANCE -->
+        <section id="attendance" class="dashboard-section">
+
+            <div class="section-heading">
+                <h2>My Attendance</h2>
+                <p>View your attendance records for approved events.</p>
+            </div>
+
+            <div class="content-card table-wrapper">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Attendance Date</th>
+                            <th>Attendance Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="attendanceTable">
+                        <tr>
+                            <td colspan="3">Loading attendance...</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- CERTIFICATES -->
+        <section id="certificates" class="dashboard-section">
+
+            <div class="section-heading">
+                <h2>My Certificates</h2>
+                <p>Celebrate your volunteering achievements.</p>
+            </div>
+
+            <div id="certificatesContainer" class="certificates-grid">
+
+                <p>Loading certificates...</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- EVENT DETAILS MODAL -->
+<div id="eventModal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2 id="modalEventName">Event Details</h2>
+            <button id="closeEventModal" class="close-btn">&times;</button>
+        </div>
+
+        <div id="eventDetails"></div>
+
+        <div class="modal-actions">
+            <button id="registerEventBtn" class="primary-btn">
+                Register for Event
+            </button>
+
+            <button id="cancelEventModal" class="secondary-btn">
+                Close
+            </button>
+        </div>
+
+        <p id="eventMessage"></p>
+
+    </div>
+
+</div>
+
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>

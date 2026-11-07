@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunteerHub | Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <h2>VolunteerHub</h2>
+            <p>Administration Panel</p>
+        </div>
+
+        <nav>
+            <a href="#overview" class="nav-link active">📊 Dashboard</a>
+            <a href="#events" class="nav-link">📅 Manage Events</a>
+            <a href="#volunteers" class="nav-link">👥 Volunteers</a>
+            <a href="#registrations" class="nav-link">📋 Registrations</a>
+            <a href="#analytics" class="nav-link">📈 Analytics</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="topbar">
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p>Manage your VolunteerHub platform</p>
+            </div>
+
+            <div class="admin-profile">
+                <span class="avatar">A</span>
+                <span id="adminName">Admin</span>
+            </div>
+        </header>
+
+
+        <!-- OVERVIEW -->
+        <section id="overview">
+
+            <h2 class="section-title">Overview</h2>
+
+            <div class="stats-container">
+
+                <div class="stat-card">
+                    <p>Total Volunteers</p>
+                    <h2 id="totalVolunteers">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Total Organizers</p>
+                    <h2 id="totalOrganizers">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Total Events</p>
+                    <h2 id="totalEvents">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Total Registrations</p>
+                    <h2 id="totalRegistrations">0</h2>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MANAGE EVENTS -->
+        <section id="events" class="content-card">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Manage Events</h2>
+                    <p>Create and manage volunteering events.</p>
+                </div>
+
+                <button id="addEventBtn" class="primary-btn">
+                    + Add New Event
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Volunteer Limit</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="eventsTable">
+                        <tr>
+                            <td colspan="6">Loading events...</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- VOLUNTEERS -->
+        <section id="volunteers" class="content-card">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Registered Users</h2>
+                    <p>View volunteers and organizers on the platform.</p>
+                </div>
+
+                <button id="refreshUsersBtn" class="secondary-btn">
+                    ↻ Refresh
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Account Type</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="volunteersTable">
+                        <tr>
+                            <td colspan="4">Loading users...</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- REGISTRATIONS -->
+        <section id="registrations" class="content-card">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Event Registrations</h2>
+                    <p>Monitor volunteer registrations.</p>
+                </div>
+
+                <button id="refreshRegistrationsBtn" class="secondary-btn">
+                    ↻ Refresh
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Volunteer</th>
+                            <th>Event</th>
+                            <th>Registration Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="registrationsTable">
+                        <tr>
+                            <td colspan="5">Loading registrations...</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANALYTICS -->
+        <section id="analytics" class="content-card">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Analytics</h2>
+                    <p>View platform registration statistics.</p>
+                </div>
+            </div>
+
+            <div class="analytics-container">
+                <div class="chart-card">
+                    <h3>Registration Statistics</h3>
+                    <canvas id="registrationChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Event Participation</h3>
+                    <canvas id="eventChart"></canvas>
+                </div>
+            </div>
+
+        </section>
+
+        <p id="dashboardMessage"></p>
+
+    </main>
+
+
+    <!-- ADD / EDIT EVENT MODAL -->
+    <div id="eventModal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Event</h2>
+                <button type="button" id="closeModal" class="close-btn">×</button>
+            </div>
+
+            <form id="eventForm">
+
+                <input type="hidden" id="eventId">
+
+                <label>Event Name</label>
+                <input type="text" id="eventName" required>
+
+                <label>Description</label>
+                <textarea id="eventDescription" rows="3" required></textarea>
+
+                <label>Event Date</label>
+                <input type="date" id="eventDate" required>
+
+                <label>Location</label>
+                <input type="text" id="eventLocation" required>
+
+                <label>Volunteer Limit</label>
+                <input type="number" id="volunteerLimit" min="1" required>
+
+                <label>Registration Deadline</label>
+                <input type="date" id="registrationDeadline" required>
+
+                <label>Event Category</label>
+                <select id="categoryId" required>
+                    <option value="">Select Category</option>
+                </select>
+
+                <label>Organization</label>
+                <select id="organizationId" required>
+                    <option value="">Select Organization</option>
+                </select>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelModal" class="secondary-btn">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="primary-btn">
+                        Save Event
+                    </button>
+                </div>
+
+            </form>
+
+            <p id="formMessage"></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- CHART LIBRARY -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- JAVASCRIPT -->
+    <script src="admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunteerHub | Organizer Dashboard</title>
+    <link rel="stylesheet" href="organizer.css">
+</head>
+
+<body>
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <h2>VolunteerHub</h2>
+            <p>Organizer Panel</p>
+        </div>
+
+        <nav>
+            <a href="#overview" class="nav-link active">📊 Dashboard</a>
+            <a href="#events" class="nav-link">📅 My Events</a>
+            <a href="#registrations" class="nav-link">👥 Registrations</a>
+            <a href="#attendance" class="nav-link">✅ Attendance</a>
+            <a href="#certificates" class="nav-link">🏆 Certificates</a>
+            <a href="#analytics" class="nav-link">📈 Analytics</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Organizer Dashboard</h1>
+                <p>Manage your events and volunteers</p>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">O</div>
+                <span id="organizerName">Organizer</span>
+            </div>
+        </header>
+
+        <!-- OVERVIEW -->
+        <section id="overview" class="dashboard-section">
+            <h2>Overview</h2>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>My Events</h3>
+                    <p id="totalEvents">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Total Registrations</h3>
+                    <p id="totalRegistrations">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Pending Applications</h3>
+                    <p id="pendingRegistrations">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Approved Volunteers</h3>
+                    <p id="approvedRegistrations">0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MY EVENTS -->
+        <section id="events" class="content-card dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <h2>My Events</h2>
+                    <p>Manage events organized by your organization.</p>
+                </div>
+
+                <button id="addEventBtn" class="primary-btn">
+                    + Create Event
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event Name</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Volunteer Limit</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="eventsTable">
+                        <tr>
+                            <td colspan="6">Loading events...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- REGISTRATIONS -->
+        <section id="registrations" class="content-card dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Volunteer Registrations</h2>
+                    <p>Review and manage volunteer applications.</p>
+                </div>
+
+                <button id="refreshRegistrationsBtn" class="secondary-btn">
+                    Refresh
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Volunteer</th>
+                            <th>Email</th>
+                            <th>Event</th>
+                            <th>Registration Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="registrationsTable">
+                        <tr>
+                            <td colspan="6">Loading registrations...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ATTENDANCE MANAGEMENT -->
+        <section id="attendance" class="content-card dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Attendance Management</h2>
+                    <p>Mark attendance for approved volunteers.</p>
+                </div>
+
+                <button id="refreshAttendanceBtn" class="secondary-btn">
+                    Refresh
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Volunteer</th>
+                            <th>Event</th>
+                            <th>Assigned Role</th>
+                            <th>Attendance Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="attendanceTable">
+                        <tr>
+                            <td colspan="5">Loading attendance...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CERTIFICATE MANAGEMENT -->
+        <section id="certificates" class="content-card dashboard-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Certificate Management</h2>
+                    <p>Generate certificates for volunteers who attended events.</p>
+                </div>
+
+                <button id="refreshCertificatesBtn" class="secondary-btn">
+                    Refresh
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Volunteer</th>
+                            <th>Event</th>
+                            <th>Attendance</th>
+                            <th>Certificate</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="certificatesTable">
+                        <tr>
+                            <td colspan="5">Loading certificates...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ANALYTICS -->
+        <section id="analytics" class="content-card dashboard-section">
+            <h2>Event Analytics</h2>
+            <p>Monitor registrations for your events.</p>
+
+            <div class="analytics-container">
+                <div class="chart-card">
+                    <h3>Registration Status</h3>
+                    <canvas id="registrationChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Event Participation</h3>
+                    <canvas id="eventChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- CREATE / EDIT EVENT MODAL -->
+<div id="eventModal" class="modal hidden">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2 id="modalTitle">Create Event</h2>
+            <button id="closeModal" class="close-btn">&times;</button>
+        </div>
+
+        <form id="eventForm">
+            <input type="hidden" id="eventId">
+
+            <label>Event Name</label>
+            <input type="text" id="eventName" required>
+
+            <label>Description</label>
+            <textarea id="eventDescription" required></textarea>
+
+            <label>Event Date</label>
+            <input type="date" id="eventDate" required>
+
+            <label>Location</label>
+            <input type="text" id="eventLocation" required>
+
+            <label>Volunteer Limit</label>
+            <input type="number" id="volunteerLimit" min="1" required>
+
+            <label>Registration Deadline</label>
+            <input type="date" id="registrationDeadline" required>
+
+            <label>Event Category</label>
+            <select id="categoryId" required>
+                <option value="">Select Category</option>
+            </select>
+
+            <div id="formMessage"></div>
+
+            <div class="modal-actions">
+                <button type="button" id="cancelModal" class="secondary-btn">
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-btn">
+                    Save Event
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="organizer.js"></script>
+
+</body>
+</html>
