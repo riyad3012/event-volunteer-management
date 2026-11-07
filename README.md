@@ -27,7 +27,27 @@ The Event Volunteer Management System enables organizers to manage events and vo
 - MySQL database integration
 - REST API endpoints
 - Session-based authentication
+## Application Screenshots
 
+### 1. Volunteer Dashboard
+View registered events, pending applications, approved events and earned certificates.
+
+![Volunteer Dashboard](screenshots/volunteer-dashboard.png)
+
+### 2. Browse Events
+Explore volunteering opportunities, search events and view event details.
+
+![Browse Events](screenshots/browse-events.png)
+
+### 3. Role Selection
+Choose between accessing the application as an organizer or volunteer.
+
+![Role Selection](screenshots/role-selection.png)
+
+### 4. Organizer Dashboard
+Manage events, monitor registrations, review applications and coordinate volunteers.
+
+![Organizer Dashboard](screenshots/organizer-dashboard.png)
 ## Technologies Used
 
 **Frontend**
