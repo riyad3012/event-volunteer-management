@@ -27,7 +27,7 @@ The Event Volunteer Management System enables organizers to manage events and vo
 - MySQL database integration
 - REST API endpoints
 - Session-based authentication
-##technologies used
+## technologies used
 **Frontend**
 - HTML5
 - CSS3
